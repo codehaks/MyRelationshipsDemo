@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace MyApp.Controllers
+namespace MyApp.Pages
 {
-    public class HomeController : Controller
+    public class IndexModel : PageModel
     {
-        public IActionResult Index()
+        public void OnGet()
         {
-            return View();
+
         }
     }
 }
