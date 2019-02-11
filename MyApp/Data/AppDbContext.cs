@@ -15,7 +15,12 @@ namespace MyApp.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(builder);
+            builder.Entity<Blog>()
+                .HasMany(b => b.Posts)
+                .WithOne(p => p.Blog)
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired();
+
         }
     }
 }
