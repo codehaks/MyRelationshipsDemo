@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MyApp.Models;
 
 namespace MyApp.Data
 {
@@ -9,11 +10,25 @@ namespace MyApp.Data
         {
         }
 
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<Student> Students { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(builder);
+            builder.Entity<CourseStudent>()
+                .HasKey(c => new { c.StudentId, c.CourseId });
+
+            builder.Entity<CourseStudent>()
+                .HasOne(c => c.Course)
+                .WithMany(c => c.CourseStudents)
+                .HasForeignKey(c => c.CourseId);
+
+            builder.Entity<CourseStudent>()
+               .HasOne(s => s.Student)
+               .WithMany(s => s.CourseStudents)
+               .HasForeignKey(s => s.StudentId);
+
         }
     }
 }
