@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MyApp.Models;
 
 namespace MyApp.Data
 {
@@ -9,7 +10,9 @@ namespace MyApp.Data
         {
         }
 
-        
+        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<Post> Posts { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
